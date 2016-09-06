@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>aaa</title>
+		<!-- <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script> -->
+		<script type="text/javascript">
+			var files;
+			var currentPlayNum;
+			window.onload = function(){
+				console.log("begin");
+				document.getElementById('getFileDir').addEventListener('change', getAllFile, false);
+				document.getElementById('player').addEventListener('ended', playNext, false);
+			}
+			function getAllFile(e){
+				e = e || window.event;
+				files = filter(this.files);				
+				/*展示所有的歌曲名称*/
+				var list = document.getElementById("song_list");
+				while(list.hasChildNodes()){
+					list.removeChild(list.firstChild);					
+				}				
+				var str = "";
+				for (var i = 0; i < files.length; i++) {
+					var file = files[i];					
+					str += "<li style='cursor:hand;margin-top:3px;' onclick='playBySelectNum(\"" + i + "\")'>" + file.webkitRelativePath + "</li>";
+				}
+				document.getElementById("song_list").innerHTML = str;				
+				playBySelectNum(0);
+			}
+			function playNext(){
+				currentPlayNum ++
+				playBySelectNum(currentPlayNum);
+			}
+			function playBySelectNum(num){				
+				currentPlayNum = num;
+				var file = files[num]
+				var reader = new FileReader();
+				reader.onload = (function(file) {
+					return function() {						
+						document.getElementById("player").setAttribute("src",this.result);						
+					};
+				})(file);
+				//读取文件内容
+				reader.readAsDataURL(file);
+				var strArr = file.webkitRelativePath.split('/');
+				var song_name = strArr[strArr.length-1]				
+				document.getElementById("song_name").innerHTML = song_name;
+			}	
+			function filter	(files){
+				var musicFile = new Array();
+				for (var i = 0; i < files.length; i++) {
+					var file = files[i];
+					var filename = file.webkitRelativePath;					
+					var nameArr = filename.split(".");
+					var lastStr = nameArr[nameArr.length-1];
+					if(lastStr.toLowerCase()=="mp3"){
+						console.log(filename);
+						musicFile.push(file);
+					}
+				}				
+				return musicFile;
+			}	
+		</script>
+	</head>
+	<body>	
+		<div id="content" style="max-width: 800px; min-height: 700px; margin:auto;">
+			<div>
+				<input id="getFileDir" type="file" multiple="multiple" webkitdirectory value="请选择播放文件夹">
+			</div>
+			<div style="margin-top:10px;">
+				<div>
+					歌曲名称的：&nbsp;<a id="song_name"></a>
+				</div>
+				<div style="margin-top:5px;">
+					<audio id="player" src="" controls=controls autoplay="autoplay"></audio>
+				</div>
+			</div>
+			<div>
+				<ul id="song_list"></ul>
+			</div>
+		</div>
+	</body>	
+</html>
