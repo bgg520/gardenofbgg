@@ -23,7 +23,7 @@
 				var str = "";
 				for (var i = 0; i < files.length; i++) {
 					var file = files[i];					
-					str += "<li style='cursor:hand;margin-top:3px;background:" + background[i%4] + "' onclick='playBySelectNum(\"" + i + "\")'>" + file.webkitRelativePath + "</li>";
+					str += "<li style='cursor:hand;margin-top:3px;background:" + background[i%3] + "' onclick='playBySelectNum(\"" + i + "\")'>" + file.webkitRelativePath + "</li>";
 				}
 				document.getElementById("song_list").innerHTML = str;				
 				playBySelectNum(0);
