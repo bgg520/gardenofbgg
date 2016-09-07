@@ -4,6 +4,7 @@
 		<title>aaa</title>
 		<!-- <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script> -->
 		<script type="text/javascript">
+			var background = ['#e76b5c','#75c8b9','#4f85bb','#bad3be'];
 			var files;
 			var currentPlayNum;
 			window.onload = function(){
@@ -22,7 +23,7 @@
 				var str = "";
 				for (var i = 0; i < files.length; i++) {
 					var file = files[i];					
-					str += "<li style='cursor:hand;margin-top:3px;' onclick='playBySelectNum(\"" + i + "\")'>" + file.webkitRelativePath + "</li>";
+					str += "<li style='cursor:hand;margin-top:3px;background:" + background[i%4] + "' onclick='playBySelectNum(\"" + i + "\")'>" + file.webkitRelativePath + "</li>";
 				}
 				document.getElementById("song_list").innerHTML = str;				
 				playBySelectNum(0);
@@ -54,7 +55,6 @@
 					var nameArr = filename.split(".");
 					var lastStr = nameArr[nameArr.length-1];
 					if(lastStr.toLowerCase()=="mp3"){
-						console.log(filename);
 						musicFile.push(file);
 					}
 				}				
@@ -75,7 +75,7 @@
 					<audio id="player" src="" controls=controls autoplay="autoplay"></audio>
 				</div>
 			</div>
-			<div>
+			<div style="width:500px;">
 				<ul id="song_list"></ul>
 			</div>
 		</div>
