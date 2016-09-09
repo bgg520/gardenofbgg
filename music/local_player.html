@@ -1,0 +1,146 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>本地音乐播放</title>
+		<!-- <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script> -->
+		<script type="text/javascript">
+			var background = ['#75c8b9','#bad3be'];
+			var files;
+			var currentPlayNum = -1;
+			var playModel = "AllOne";
+			var playHistory;
+			var lastOne;
+			window.onload = function(){
+				console.log("begin");
+				document.getElementById('getFileDir').addEventListener('change', getAllFile, false);
+				document.getElementById('player').addEventListener('ended', playNext, false);
+			}
+
+			function getAllFile(e){
+				e = e || window.event;
+				files = null;
+				var playHistory = null;
+				var lastOne = null;
+				var currentPlayNum = -1;
+				files = filter(this.files);				
+				/*展示所有的歌曲名称*/
+				var list = document.getElementById("song_list");
+				while(list.hasChildNodes()){
+					list.removeChild(list.firstChild);					
+				}				
+				var str = "";
+				for (var i = 0; i < files.length; i++) {
+					var file = files[i];					
+					str += "<li style='cursor:hand;margin-top:3px;background:" + background[i%3] + "' onclick='playBySelectNum(\"" + i + "\")'>" + getFileName(file); + "</li>";
+				}
+				document.getElementById("song_list").innerHTML = str;				
+				//playBySelectNum(0);
+				playNext();
+			}
+			function playNext(){
+				if (!playModel|| playModel=="AllOne") {
+					currentPlayNum ++;
+				} else if(playModel=="Random"){
+					currentPlayNum = Math.floor(Math.random()*files.length);
+				} else if(playModel=="AllRepeat"){
+					if(currentPlayNum ++==files.length){
+						currentPlayNum = 0;
+					}
+				} else if(playModel=="OneRepeat"){
+					if(currentPlayNum==-1){
+						currentPlayNum ++;
+					}
+				}				
+				showPlaySongName(currentPlayNum);
+				playBySelectNum(currentPlayNum);
+				showPlayHistory(currentPlayNum);
+			}
+			function showPlaySongName(num){
+				var file = files[num];
+				var song_name = getFileName(file);			
+				document.getElementById("song_name").innerHTML = song_name;
+			}
+			function playPre(){
+				if(currentPlayNum&&currentPlayNum>0){
+					playBySelectNum(currentPlayNum)
+				}
+			}
+			function playBySelectNum(num){				
+				currentPlayNum = num;
+				var file = files[num];
+				var reader = new FileReader();
+				reader.onload = (function(file) {
+					return function() {						
+						document.getElementById("player").setAttribute("src",this.result);						
+					};
+				})(file);
+				//读取文件内容
+				reader.readAsDataURL(file);
+			}	
+			function showPlayHistory(num){
+				var file = files[num];
+				var song_name = getFileName(file);
+				if(song_name!=lastOne){
+					lastOne = song_name;
+					var str = '<div>'+song_name+'</div>';
+			　　　　var div = document.createElement("div");
+			　　　　div.innerHTML = song_name;
+					document.getElementById("playHistoryList").appendChild(div);
+				}
+			}
+			function filter	(files){
+				var musicFile = new Array();
+				for (var i = 0; i < files.length; i++) {
+					var file = files[i];
+					var filename = file.webkitRelativePath;					
+					var nameArr = filename.split(".");
+					var lastStr = nameArr[nameArr.length-1];
+					if(lastStr.toLowerCase()=="mp3"){
+						musicFile.push(file);
+					}
+				}				
+				return musicFile;
+			}	
+
+			function getFileName(file){
+				var strArr = file.webkitRelativePath.split('/');
+				return strArr[strArr.length-1];
+			}
+			function changePlayModel(type){
+				playModel = type;
+			}
+		</script>
+	</head>
+	<body>	
+		<div id="content" style="max-width: 800px; min-height: 700px; margin:auto;">
+			<div>
+				<input id="getFileDir" type="file" multiple="multiple" webkitdirectory value="请选择播放文件夹">
+			</div>
+			<div style="margin-top:10px;">
+				<div>
+					歌曲名称的：&nbsp;<a id="song_name"></a>
+				</div>
+				<div style="margin-top:10px;">
+					<input type="radio" name="model" onclick="changePlayModel('AllOne')" checked="checked" />顺序播放
+					<input type="radio" name="model" onclick="changePlayModel('Random')" />随机播放
+					
+					<input type="radio" name="model" onclick="changePlayModel('AllRepeat')" />全部循环播放
+					<input type="radio" name="model" onclick="changePlayModel('OneRepeat')" />单曲循环播放
+				</div>
+				<div style="margin-top:5px;">
+					<audio id="player" src="" controls=controls autoplay="autoplay"></audio>
+				</div>
+				<div style="margin-top:5px;">
+					<input type="button" onclick="playPre()" value="<<上一曲" />
+					<input type="button" onclick="playNext()" value="下一曲>>" />
+				</div>
+			</div>
+			<div style="width:500px;">
+				<ul id="song_list"></ul>
+				<div style="margin-top:20px" id="playHistoryList">
+					<div style="size:14px;">播放历史:</div>
+				</div>
+			</div>
+		</div>
+	</body>	
+</html>
