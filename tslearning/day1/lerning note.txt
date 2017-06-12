@@ -1,0 +1,22 @@
+第一章
+	介绍typescript
+
+第二章
+	javascript---->es5
+	typescript---->es6
+
+第三章
+	type script 优势
+	一、支持es6规范
+	二、ide支持
+		1、类型检查
+		2、语法提示
+		3、重构
+	三、angular2框架的卡法语言
+
+第三章
+	typescript编译器
+	一、线上编译器
+	二、使用本地编译器
+		1、微软官方msi文件
+		2、npm安装相关编译器
