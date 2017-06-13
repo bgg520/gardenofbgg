@@ -1,11 +1,9 @@
 第一章
 	介绍typescript
-
-第二章
 	javascript---->es5
 	typescript---->es6
 
-第三章
+第二章
 	type script 优势
 	一、支持es6规范
 	二、ide支持
