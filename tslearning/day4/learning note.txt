@@ -1,0 +1,39 @@
+第八章
+	面向对象特性
+	一、类（Class)
+	类是typescript的核心，使用typescript开发时，大部分代码都是写在类里面的。
+	类的定义、构造函数、类的继承；
+	例1：
+	class Person{
+		constructor(){
+			console.log("haha");
+		}
+		age;
+		public name;
+		public eat(){
+			console.log("im eating");
+		}
+	}
+	注：
+	访问控制符：public(默认)，private，protected
+	constructor()函数为构造函数
+	
+	例2：
+	class Employee extends Person{
+		constructor(name:string, code:string){
+			super(name);
+			this.code = code;
+		}
+		code : string,
+		work(){
+			super.eat();
+			this.doWork();
+		}
+		private doWork(){
+			console.log("i'm working");
+		}
+	}
+	
+	二、泛型(generic)
+		参数化的类型，一般用了限制集合的内容
+		如: var workers: Array<Person> = [];

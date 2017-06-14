@@ -3,9 +3,45 @@
 	一、Rest and Spread 操作符：
 		用来声明任意数量的方法参数
 
-	二、
+	二、generator函数
+		控制函数的执行过程，手工暂停和回复代码执行（es6标准）
+
+
+	三、destructuring析构表达式
+		通过表达式将对象或数组拆解成任意数量的变量
 
 	例如：
+	1、
 	function func1(...args){}
 	注：
 		...args表明任意数量的参数
+
+	2、析构表达式
+	function getVal(){
+		code: "IBM"，
+		price : 100，
+		body : {
+			age:18,
+			name:"bgg"
+		}
+	}
+	var {code：codex, price, body:{body2}} = getVal();
+	console.log(codex);
+	console.log(price);
+	console.log(body2)
+	a.能正常打印出值，
+	b.通过冒号的形式可以给变量取别名,
+	c.通过冒号加大括号的形式可以获取复杂对象的第几个变量值，例子中body获取的值"bgg"
+	d.针对数组的析构表达式不是使用花括号，使用方括号
+
+第七章
+	表达式和循环
+	一、箭头表达式（=>）
+		用来声明匿名函数，消除传统匿名函数的this指针问题
+
+	二、循环
+		forEach（）, for in, for of
+		forEach():不容易中断；
+		for in: 打印出对象或数组的键名；
+		for of: 与for in 语法相同，循环得到的是值，但是忽略属性，不循环属性，与for of 比较可以轻易打断。
+
