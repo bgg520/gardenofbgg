@@ -37,3 +37,95 @@
 	二、泛型(generic)
 		参数化的类型，一般用了限制集合的内容
 		如: var workers: Array<Person> = [];
+
+	三、接口（Interface）
+		用来建立某种代码约定，使得其他开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码约定
+
+		例1：限定类实现时参数
+		interface IPerson{
+			name:string;
+			age:number;
+		}
+
+		class Person{
+			constructor(public config:IPerson){
+
+			}
+		}
+
+		var p1 = new Person({
+			name:"zhangsan";
+			age:18
+		});
+
+		例2：限定实现接口时需要实现的方法
+		interface Animal{
+			eat();
+		}
+		class Sheep implements Animal{
+			eat(){
+				console.log("i eat grass");
+			}
+		}
+		class Tiger implements Animal{
+			eat(){
+				console.log("i eat meat");
+			}
+		}
+
+	四、模块（module）
+		模块可以帮助开发者将代码分割为可重用的单元。开发者可以自己决定将模块中的哪些资源（类、方法、变量）暴露出去供外部使用，那些资源只在模块内使用。
+
+		例：
+		文件一： a.ts
+		export var prop1； //export:对外暴露
+		var prop2;
+		export function func1(){
+		}
+		function func2(){
+		}
+		export class Clazz1{
+		}
+		class Clazz2{
+		}
+
+		文件二： b.ts
+		import {prop1, func1, Clazz1} from "./a";  
+		//import:引入
+		console.log(prop1);
+		func1();
+		new Clazz1();
+
+	五、注解（annotation）
+		注解为程序的元素（类、方法、变量）加上更直观明了的说明，这些说明信息与程序的业务逻辑无关，而是供指定的工具或框架使用的。
+		例（angular2框架下）：
+		import {Component} from '@angular/core';
+		@Component({
+			selector:'app-root',
+			templateUrl:'./app.component.html',
+			styleUrls:['./app.component.css']
+		})
+		export class AppComponent {
+			title = 'app works!';
+		}
+
+	六、类型定义文件（*.d.ts）
+		类型定义文件用来帮助开发者在typescript中使用已有的javascript的工具包，如：Jquery；
+		类型定义文件来源：https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master
+
+		例：
+		export var prop1； //export:对外暴露
+		var prop2;
+		export function func1(){
+		}
+		function func2(){
+			$('#xxx').hide();
+			//当引入jquery的.d.ts文件是可以使用jquery中常用的方法了；
+		}
+		export class Clazz1{
+		}
+		class Clazz2{
+		}
+
+
+
