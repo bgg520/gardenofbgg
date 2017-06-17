@@ -14,8 +14,13 @@
     <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
    	
     <script type="text/javascript">
-      $(document).ready(function () {
-      })
+     	$(document).ready(function () {
+     		$("#mzdhl").click(function(){
+     			var html = '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=34341360&auto=1&height=66"></iframe>'
+     			$("#163player").html(html);
+     		})
+
+    	})
     </script>
     <title>aaaaa by bgg520</title>
   </head>
@@ -23,7 +28,7 @@
   <body>
   	<div style="visibility:hidden;">
 		<!--<embed id="aa" src="pianoboy.mp3" autostart=true loop=true>-->
-		<embed id="aa" src="file:///E:/html/abc.mp3" autostart=true loop=true>
+		<!-- <embed id="aa" src="file:///E:/html/abc.mp3" autostart=false loop=true> -->
   	</div>
 	<div id="content" style="max-width: 800px; min-height: 700px; margin:auto;"> 
 		<div id="head"></div>
@@ -43,9 +48,17 @@
 				<h2><a href="music/moshimowang/moshimowang.html">莫失莫忘</a></h2>
 				<div style="font-size:18px;color:red;">aaaa！</div>			
 			</div>
-			<div>
+			<div style="display: none;">
 				<img src="pic/bushuohua.jpg"></img>
 				<div style="font-size:18px;color:red;">aaaa！</div>			
+			</div>
+
+
+
+			<div>
+				<h2><a id="mzdhl">梦幻中的婚礼</a></h2>
+				<div style="font-size:18px;color:red;">aaaa！</div>	
+				<div id='163player'></div>		
 			</div>
 		</div>
 	
