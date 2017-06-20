@@ -112,6 +112,7 @@
 	六、类型定义文件（*.d.ts）
 		类型定义文件用来帮助开发者在typescript中使用已有的javascript的工具包，如：Jquery；
 		类型定义文件来源：https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master
+		工具：https://github.com/typings/typings
 
 		例：
 		export var prop1； //export:对外暴露
@@ -127,5 +128,7 @@
 		class Clazz2{
 		}
 
-
-
+第九章	总结
+	1、介绍了typescript的基本概念和优势
+	2、介绍了如何搭建typescript开发环境
+	3、介绍了typescript的语法和特性
