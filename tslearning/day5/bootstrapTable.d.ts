@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 interface JQuery {
-    bootstrapTable(options?: any): JQuery;
+    bootstrapTable(options?: any, option?: any): JQuery;
 }
 
 declare var bootstrapTable: JQueryStatic;

@@ -13,7 +13,6 @@ class rowData {
 }
 
 $(function () {
-    debugger;
     $("#dddd").hide();
 
     let row1 = new rowData(16, 'he');
@@ -39,9 +38,13 @@ $(function () {
 			title: '交易编号'
 		}]
     })
-    debugger;
-    data.pop();
-    console.log(data);
+
+    let tdata = $("#bt").bootstrapTable("getData");
+    console.log(tdata);
+
+    let row4:rowData = new rowData(19, 'he');
+    let row5:rowData = new rowData(20, 'xiao');
+    let data2:rowData[] = [row4, row5];
     let method:any = ['load', data];
-    $("#bt").bootstrapTable(method);
+    $("#bt").bootstrapTable('load', data2);
 });
