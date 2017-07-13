@@ -16,8 +16,8 @@
 	<context:component-scan base-package="com.bgg"/>
 	
 	<!-- quartz -->
-	<bean id="hellojob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="jobClass" value="com.bgg.timer.HelloTimer" />
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.bgg.timer.WeatherTimer" />
 		<!-- <property name="jobDataMap">
 			<map>
 				<entry key="anotherBean" value-ref="anotherBean"></entry>
@@ -28,17 +28,13 @@
 	
 	<!-- quartz trigger -->
 	<bean id="CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="hellojob" />
-		<property name="cronExpression" value="0/5 * * * * ？" />
+		<property name="jobDetail" ref="jobDetail" />
+		<property name="cronExpression" value="0 32 0/1 * * ?" />
+		<property name="startDelay" value="5000"></property>
 	</bean>
 	
 	<!-- quartz scheduler factory -->
 	<bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="jobDetails">
-			<list>
-				<ref bean="hellojob"/>
-			</list>
-		</property>
 		<property name="triggers">
 			<list>
 				<ref bean="CronTriggerBean"/>
