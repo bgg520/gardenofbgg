@@ -48,7 +48,4 @@
   	<url-pattern>/*</url-pattern>
   </servlet-mapping>
   
-  <!-- log4j -->
-  
-  
 </web-app>

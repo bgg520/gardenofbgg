@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.bgg.timer.dao.WeatherInfoDao">  
+    <select id="insertWeatherInfo" parameterType="com.bgg.timer.bean.WeatherInfo">  
+        insert into
+		weatherinfo(id,city,cityid,temp1,temp2,weather,img1,img2,ptime,created) values
+		(#{weatherinfo.id},#{weatherinfo.city},#{weatherinfo.cityid},
+			#{weatherinfo.temp1},#{weatherinfo.temp2},#{weatherinfo.weather},
+			#{weatherinfo.img1},#{weatherinfo.img2},#{weatherinfo.ptime},#{weatherinfo.created})
+    </select>  
+</mapper>  

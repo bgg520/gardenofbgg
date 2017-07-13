@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<!-- 通过typeAlias使得我们在下面使用Student实体类的时候不需要写包名 -->
+	<typeAlias alias="sqlmap-Weather" type="com.bgg.service.weather.Weather" />
+	<insert id="insert" parameterClass="com.bgg.service.weather.Weather">
+		insert into
+		weatherinfo(id,city,cityid,temp1,temp2,weather,img1,img2,ptime,created) values
+		(#weatherinfo.id#,#weatherinfo.city#,#weatherinfo.cityid#,
+			#weatherinfo.temp1#,#weatherinfo.temp2#,#weatherinfo.weather#,
+			#weatherinfo.img1#,#weatherinfo.img2#,#weatherinfo.ptime#,#weatherinfo.created#)
+	</insert>
+</sqlMap>
