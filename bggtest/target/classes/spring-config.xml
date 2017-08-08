@@ -15,6 +15,31 @@
 	<!-- <context:annotation-config/> -->
 	<context:component-scan base-package="com.bgg"/>
 	
-	<!--  -->
+	<!-- quartz -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.bgg.timer.WeatherTimer" />
+		<!-- <property name="jobDataMap">
+			<map>
+				<entry key="anotherBean" value-ref="anotherBean"></entry>
+			</map>
+		</property> -->
+		<property name="durability" value="true" />
+	</bean>
+	
+	<!-- quartz trigger -->
+	<bean id="CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail" />
+		<property name="cronExpression" value="0 32 0/1 * * ?" />
+		<property name="startDelay" value="5000"></property>
+	</bean>
+	
+	<!-- quartz scheduler factory -->
+	<bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="CronTriggerBean"/>
+			</list>
+		</property>
+	</bean>
 	
 </beans>
