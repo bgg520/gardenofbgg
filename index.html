@@ -33,7 +33,8 @@
      				dataType:"json",
      				async:true,
      				xhrFields:{
-     					withCredentials : true
+     					//withCredentials : true
+     					'Access-Control-Allow-Origin':'*'
      				},
      				success:function(result){
      					console.log(result);
