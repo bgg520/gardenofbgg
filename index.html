@@ -26,6 +26,24 @@
      			//alert("正在跳转");
      		})
 
+     		$("#aliyun_mysql").click(function(){
+     			$.ajax({
+     				url:"http://bxu2713370795.my3w.com/test_user.php",
+     				type:"get",
+     				dataType:"json",
+     				async:true,
+     				xhrFields:{
+     					withCredentials : true
+     				},
+     				success:function(result){
+     					console.log(result);
+     				},
+     				error:function(result, status){
+     					cosnole.log(status);
+     				}
+     			});
+     		})
+
     	})
     </script>
     <title>aaaaa by bgg520</title>
@@ -68,7 +86,7 @@
 				<div id='163player'></div>		
 			</div>
             <div>
-				<h2><a id="aliyun_mysql" href="http://bxu2713370795.my3w.com/test_user.php">aliyun_mysql</a></h2>
+				<h2><a id="aliyun_mysql">aliyun_mysql</a></h2>
 				<div style="font-size:18px;color:red;">aliyun_mysql！</div>	
 				<div id='163player'></div>		
 			</div>
