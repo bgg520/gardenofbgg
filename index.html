@@ -10,7 +10,8 @@
     <!--<link rel="stylesheet" href="res/bootstrap-3.3.5/css/github-light.css">-->
 
     <!-- <script type="text/javascript" src="res/bootstrap-3.3.5/JS/modernizr.js"></script> -->
-    <script type="text/javascript" src="res/jquery/jquery-1.9.1.min.js"></script>
+    <!-- <script type="text/javascript" src="res/jquery/jquery-1.9.1.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
     <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
    	
     <script type="text/javascript">
@@ -25,6 +26,44 @@
      		$("#pp_store").click(function(){
      			//alert("正在跳转");
      		})
+
+     		$("#aliyun_mysql").click(function(){
+     			$.ajax({
+     				url:"http://bxu2713370795.my3w.com/test_user.php",
+     				type:"get",
+     				dataType:"json",
+     				async:true,
+     				xhrFields:{
+     					//withCredentials : true
+     					'Access-Control-Allow-Origin':'*'
+     				},
+     				success:function(result){
+     					console.log(result);
+     				},
+     				error:function(result, status){
+     					console.log(status);
+     				}
+     			});
+     		});
+     		$("#aliyun_mysql2").click(function(){
+     			$.getJSON("//bxu2713370795.my3w.com/test_user.php","",function(result){
+     				console.log(result);
+     			});
+     		});
+     		$("#aliyun_mysql3").click(function(){
+     			var xhr = new XMLHttpRequest();
+				xhr.open("get", "http://bxu2713370795.my3w.com/test_user.php", true);
+				//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");　　　 
+				// 声明请求源
+				xhr.setRequestHeader("Origin", "https://bgg520.github.io");
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						var responseText = xhr.responseText;
+						console.log(responseText);
+					}
+				}
+				xhr.send();
+     		});
 
     	})
     </script>
@@ -66,6 +105,18 @@
 				<h2><a id="mzdhl">歌单</a></h2>
 				<div style="font-size:18px;color:red;">纯音乐！</div>	
 				<div id='163player'></div>		
+			</div>
+            <div>
+				<h2><a id="aliyun_mysql">aliyun_mysql</a></h2>
+				<div style="font-size:18px;color:red;">aliyun_mysql！</div>	
+			</div>
+			 <div>
+				<h2><a id="aliyun_mysql2">aliyun_mysql2</a></h2>
+				<div style="font-size:18px;color:red;">aliyun_mysql2！</div>
+			</div>
+			<div>
+				<h2><a id="aliyun_mysql3">aliyun_mysql3</a></h2>
+				<div style="font-size:18px;color:red;">aliyun_mysql3！</div>
 			</div>
 		</div>
 	
