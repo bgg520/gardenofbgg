@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
+    <title>vue pratice day1</title>
+  </head>
+
+  <body>
+  	<div id="example1">
+	  {{ message.split('').reverse().join('') }}
+	</div>
+
+	<div id="example2">
+	  <p>Original message: "{{ message }}"</p>
+	  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+	</div>
+  </body>
+  <script type="text/javascript">
+  	var app = new Vue({
+	  el: '#example1',
+	  data: {
+	    message: 'Hello Vue!'
+	  }
+	});
+
+	var app2 = new Vue({
+	  el: '#example2',
+	  data: {
+	    message: 'Hello Vue!'
+	  },
+	  computed: {
+	    // a computed getter
+	    reversedMessage: function () {
+	      // `this` points to the vm instance
+	      console.log("aa");
+	      return this.message.split('').reverse().join('')
+	    }
+	  }
+	});
+	console.log(app2.reversedMessage) // -> 'olleH'
+	app2.message = 'Goodbye'
+	console.log(app2.reversedMessage) // -> 'eybdooG'
+  </script>
+</html>

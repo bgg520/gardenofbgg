@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	    <meta charset='utf-8'>
+	    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	    <script src="../../js/vue-2.4.2.js"></script>
+	    <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
+	    <title>vue pratice day1</title>
+  	</head>
+
+  	<body>
+		<div id="example1">
+			<h1 v-if="ok">Yes</h1>
+			<h1 v-else>No</h1>
+		</div>
+
+		<div id="example2">
+			<template v-if="ok">
+				<h1>title</h1>
+				<p>pp</p>
+			</template>
+		</div>
+
+		<div id="example3">
+			<div v-if="Math.random()>0.5">
+				Now you see me
+			</div>
+			<div v-else>
+				you see nothing
+			</div>
+		</div>
+		<div id="example4">
+			<template v-if="loginType==='username'">
+				<label>Username</label>
+				<input placeholder="Enter your username" />
+			</template>
+			<template v-else>
+				<label>Username</label>
+				<input placeholder="Enter your email" />
+			</template>
+		</div>
+	</body>
+  	<script type="text/javascript">
+	  	var app = new Vue({
+			el: '#example1',
+		 	data: {
+				ok: true
+			}
+		});
+		var app2 = new Vue({
+			el: '#example2',
+		 	data: {
+				ok: true
+			}
+		});
+		var app3 = new Vue({
+			el: '#example3'
+		});
+		var app4 = new Vue({
+			el: '#example4'
+		});
+
+	console.log(app2.reversedMessage) // -> 'olleH'
+	app2.message = 'Goodbye'
+	console.log(app2.reversedMessage) // -> 'eybdooG'
+  </script>
+</html>

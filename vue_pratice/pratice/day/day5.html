@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <style type="text/css">
+    	
+    	.active{color: blue;}
+    	.text-danger{border: solid;}
+
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+    <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
+    <title>vue pratice day1</title>
+  </head>
+
+  <body>
+  	<div id="example1">
+	  <div v-bind:class="{ active: isActive }">aa</div>
+	  <div class="static"
+	     v-bind:class="{ active: isActive, 'text-danger': hasError }">aa
+	</div>
+	</div>
+
+	<div id="example2">
+	  <div v-bind:class="classObject">dfdfs</div>
+	</div>
+  </body>
+  <script type="text/javascript">
+  	var app = new Vue({
+		el: '#example1',
+	 	data: {
+			isActive: true,
+			hasError: true
+		}
+	});
+
+	var app2 = new Vue({
+	  el: '#example2',
+	 data: {
+		  classObject: {
+		    active: true,
+		    'text-danger': false
+		  }
+		}
+	});
+	console.log(app2.reversedMessage) // -> 'olleH'
+	app2.message = 'Goodbye'
+	console.log(app2.reversedMessage) // -> 'eybdooG'
+  </script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	    <meta charset='utf-8'>
+	    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	    <script src="../../js/vue-2.4.2.js"></script>
+	    <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
+	    <title>vue pratice day7</title>
+  	</head>
+
+  	<body>
+		<ul id="example1">
+			<li v-for="item in items">{{item.message}}</li>
+		</ul>
+
+		<ul id="example2">
+			<li v-for="(item, index) of items">{{parentMessage}}-{{index}}-{{item.message}}</li>
+		</ul>
+
+		<ul id="example3">
+			<template v-for="item in items">
+				<li>{{item.msg}}</li>
+				<li>{{item.msg2}}</li>
+			</template>
+		</ul>
+		<ul id="example4">
+			<li v-for="(value,key,index) in item">{{index}}------{{key}}:{{value}}</li>
+		</ul>
+	</body>
+  	<script type="text/javascript">
+	  	var app = new Vue({
+			el: '#example1',
+		 	data: {
+				items: [
+					{message:"first"},
+					{message:"second"},
+					{message:"third"},
+					{message:"fourth"},
+					{message:"fifth"}
+				]
+			}
+		});
+		var app2 = new Vue({
+			el: '#example2',
+		 	data: {
+				parentMessage: "Parent",
+				items:[
+					{message:"first"},
+					{message:"second"},
+					{message:"third"},
+					{message:"fourth"},
+					{message:"fifth"}
+				]
+			}
+		});
+		var app3 = new Vue({
+			el: '#example3',
+			data: {
+				parentMessage: "Parent",
+				items:[
+					{msg:"first", msg2:"a"},
+					{msg:"second", msg2:"b"},
+					{msg:"third", msg2:"c"},
+					{msg:"fourth", msg2:"d"},
+					{msg:"fifth", msg2:"e"}
+				]
+			}
+		});
+		var app4 = new Vue({
+			el: '#example4',
+			data:{
+				item:{
+					a:"a",
+					b:"b",
+					c:"c"
+				}
+			}
+		});
+
+	console.log(app2.reversedMessage) // -> 'olleH'
+	app2.message = 'Goodbye'
+	console.log(app2.reversedMessage) // -> 'eybdooG'
+  </script>
+</html>

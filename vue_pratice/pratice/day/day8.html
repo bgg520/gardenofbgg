@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	    <meta charset='utf-8'>
+	    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	    <script src="../../js/vue-2.4.2.js"></script>
+	    <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
+	    <title>vue pratice day7</title>
+  	</head>
+
+  	<body>
+		<div id="example1">
+			<button v-on:click="counter += 1">plus 1</button>
+			<p>click times {{counter}}</p>
+		</div>
+
+		<div id="example2">
+			<button v-on:click="greet">Greet</button>
+		</div>
+
+		<ul id="example3">
+			<button v-on:click="say('hi')">Say hi</button>
+			<button v-on:click="say('what')">Say What</button>
+		</ul>
+		<ul id="example4">
+			<li v-for="(value,key,index) in item">{{index}}------{{key}}:{{value}}</li>
+		</ul>
+	</body>
+  	<script type="text/javascript">
+	  	var app = new Vue({
+			el: '#example1',
+		 	data: {
+				counter: 0
+			}
+		});
+		var app2 = new Vue({
+			el: '#example2',
+			data:{
+				name:"Vue.js"
+			},
+		 	methods: {
+				greet: function (event){
+					console.log(event);
+					console.log('Hello ' + this.name + '!');
+					if(event){
+						console.log(event.target.tagName);
+					}
+				}
+			}
+		});
+		var app3 = new Vue({
+			el: '#example3',
+			methods: {
+				say:function(message){
+					console.log(message);
+				}
+			}
+		});
+		var app4 = new Vue({
+			el: '#example4',
+			data:{
+				item:{
+					a:"a",
+					b:"b",
+					c:"c"
+				}
+			}
+		});
+
+	console.log(app2.reversedMessage) // -> 'olleH'
+	app2.message = 'Goodbye'
+	console.log(app2.reversedMessage) // -> 'eybdooG'
+  </script>
+</html>

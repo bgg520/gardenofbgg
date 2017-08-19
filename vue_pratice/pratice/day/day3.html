@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- <script type="text/javascript" src="javascripts/headsmart.min.js"></script> -->
+    <title>vue pratice day1</title>
+  </head>
+
+  <body>
+  	<span id="test">Message: {{ msg }}</span>
+  	<span id="test2" v-once>This will never change: {{ msg }}</span>
+  	<div v-html="rawHtml">{{djksdjfk}}</div>
+  	<div class="test3" v-bind:id="dynamicId">大多数</div>
+  	<button id="test4" v-bind:disabled="isButtonDisabled">Button</button>
+  	<div id="test5">
+  		{{ number + 1 }}
+		{{ ok ? 'YES' : 'NO' }}
+		{{ message.split('').reverse().join('') }}
+  		<div v-bind:id="'list-' + id"></div>
+  	</div>
+  	<p id="test6" v-if="seen">Now you see me</p>
+  	<a id="test7" v-bind:href="url">{{urlname}}</a>
+  	<a id="test8" v-on:click="doSomething">dosomething</a>
+  </body>
+  <script type="text/javascript">
+  	var app = new Vue({
+	  el: '#test',
+	  data: {
+	    msg: 'Hello Vue!'
+	  }
+	})
+	var app2 = new Vue({
+	  el: '#test2',
+	  data: {
+	    msg: '页面加载于 ' + new Date()
+	  }
+	})
+	var app3 = new Vue({
+	  el: '.test3'
+	})
+	var app4 = new Vue({
+	  el: '#test4'
+	})
+	var app5 = new Vue({
+	  el: '#test5',
+	  data: {
+	    id: 'aa',
+	    number : 9,
+	    ok : false,
+	    message : "aa is fulish"
+	  },
+	  methods: {
+	    reverseMessage: function () {
+	      this.message = this.message.split('').reverse().join('')
+	    }
+	  }
+	})
+	var app6 = new Vue({
+	  el: '#test6',
+	  data: {
+	    seen: true
+	  }
+	});
+
+	var app7 = new Vue({
+	  el: '#test7',
+	  data: {
+	   url : "http://www.baidu.com",
+	   urlname : "baidu"
+	  }
+	});
+
+	var app8 = new Vue({
+	  el: '#test8',
+	  data: {
+	  	doSomething : function(){
+	  		console.log(this);
+	  		console.log(app7);
+	  		app7.$data.url="http://www.xiami.com"
+	  		app7.$data.urlname="xiami"
+	    	//url : "www.baidu.com";
+	  	}
+	  }
+	});
+  </script>
+</html>
